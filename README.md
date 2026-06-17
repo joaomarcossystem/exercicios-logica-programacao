@@ -1,6 +1,6 @@
 # Teste Técnico - Lógica de Programação
 
-Este repositório contém a minha solução para a avaliação de conhecimento técnico Acedata. 
+Este repositório contém a minha solução para a avaliação de conhecimento técnico. 
 Optei por criar uma única Solução no Visual Studio, utilizando linguagem C#, separando os três exercícios em projetos de Console independentes para deixar tudo mais organizado.
 
 ## Estrutura dos Exercícios
