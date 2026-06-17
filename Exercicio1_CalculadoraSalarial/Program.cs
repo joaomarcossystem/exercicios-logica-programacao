@@ -23,6 +23,12 @@ namespace Exercicio1_CalculadoraSalarial
                     Console.Write("\nDigite a quantidade de filhos menores de 14 anos: ");
                     int filhosMenoresQuatorze = int.Parse(Console.ReadLine());
 
+                    if(valorSalarioHora < 0 || filhosMenoresQuatorze < 0 || horasTrabalhadasMensal < 0)
+                    {
+                        Console.WriteLine("Digite valores positivos.");
+                        continue;
+                    }
+
                     Empregado empregado = new Empregado(valorSalarioHora, horasTrabalhadasMensal, filhosMenoresQuatorze);
 
                     Console.WriteLine("\n--- RESULTADO ---");
