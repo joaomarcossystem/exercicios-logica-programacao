@@ -6,6 +6,8 @@ namespace Exercicio3_Fibonacci
     {
         public static void Main(string[] args)
         {
+            // mudança da lógica de fibonnaci:
+            // verificar se é impar > se for, somar os três numeros anteriores > se for par, mantém a lógica normal
             Console.WriteLine("===== LÓGICA DE FIBONACCI =====");
 
             while (true)
@@ -18,7 +20,7 @@ namespace Exercicio3_Fibonacci
                     if (qtdNumero <= 0)
                     {
                         Console.WriteLine("\n[Aviso] Por favor, digite um número maior que zero.\n");
-                        return;
+                        continue;
                     }
 
                     // Chama o metodo de imprimir sequencia
@@ -43,48 +45,94 @@ namespace Exercicio3_Fibonacci
             }
         }
 
-        // --- MÉTODO PARA IMPRIMIR A SEQUÊNCIA DE ACORDO COM O NÚMERO ESCOLHIDO
+        // MÉTODO PARA IMPRIMIR A SEQUÊNCIA DE ACORDO COM O NÚMERO ESCOLHIDO
         private static void ImprimirSequencia(int qtdNumero)
         {
-            int valorAnterior = 1;
-            int valorAtual = 1;
+            int antepenultimo = 0;
+            int penultimo = 0;
+            int atual = 1;
 
-            Console.WriteLine("\na) A sequencia é: ");
+            Console.WriteLine("\n A sequencia é: ");
 
             for (int i = 0; i < qtdNumero; i++)
             {
-                Console.Write($"{valorAnterior}  ");
+                Console.Write($"{atual}  ");
 
-                int proximo = valorAnterior + valorAtual;
-                valorAnterior = valorAtual;
-                valorAtual = proximo;
+                int proximo;
+
+                
+                if (atual % 2 != 0) // verificar se é impar
+                {
+                    proximo = antepenultimo + penultimo + atual; // Soma os 3 últimos
+                }
+                else
+                {
+                    proximo = penultimo + atual; // mantem a lógica caso for par
+                }
+
+                antepenultimo = penultimo;
+                penultimo = atual;
+                atual = proximo;
             }
+
             Console.WriteLine(); // Pula linha no final
         }
 
-        // --- MÉTODO PARA VERIFICAR SE O NÚMERO ESCOLHIDO PERTENCE A SEQUÊNCIA
+        // MÉTODO PARA VERIFICAR SE O NÚMERO ESCOLHIDO PERTENCE A SEQUÊNCIA
         private static void VerificarPertencimento(int alvo)
         {
-            int valorAnterior = 1;
-            int valorAtual = 1;
+            int antepenultimo = 0;
+            int penultimo = 0;
+            int atual = 1;
 
-            // O laço roda silenciosamente até alcançar ou ultrapassar o número alvo
-            while (valorAnterior < alvo)
+
+            while (atual < alvo)
             {
-                int proximo = valorAnterior + valorAtual;
-                valorAnterior = valorAtual;
-                valorAtual = proximo;
+                int proximo;
+
+                if (atual % 2 != 0) // Ímpar
+                {
+                    proximo = antepenultimo + penultimo + atual;
+                }
+                else // Par
+                {
+                    proximo = penultimo + atual;
+                }
+
+                antepenultimo = penultimo;
+                penultimo = atual;
+                atual = proximo;
+
             }
 
             // Se parou exatamente em cima do alvo, ele pertence
-            if (valorAnterior == alvo)
+            if (atual == alvo)
             {
-                Console.WriteLine($"\nb) O número {alvo} FAZ PARTE da sequência de Fibonacci.");
+                Console.WriteLine($"\n O número {alvo} FAZ PARTE da sequência de Fibonacci.");
             }
             else
             {
-                Console.WriteLine($"\nb) O número {alvo} NÃO FAZ PARTE da sequência de Fibonacci.");
+                Console.WriteLine($"\n O número {alvo} NÃO FAZ PARTE da sequência de Fibonacci.");
             }
         }
     }
 }
+
+                /*
+                for (int i = 0; i < qtdNumero; i++)
+                {
+                    Console.Write($"{valorAnterior}  ");
+
+                    int proximo = valorAnterior + valorAtual;  >>>> TENTATIVAS FEITAS NA ENTREVISTA <<<<
+                    valorAnterior = valorAtual;
+                    valorAtual = proximo;
+                }
+                */
+
+
+                /*int proximo = valorAnterior + valorAtual; 
+                if(proximo == ()) // validação numero ímpar 
+                {                                            >>>>TENTATIVAS FEITAS NA ENTREVISTA<<<<
+                    valorAnterior = valorAtual;             
+                    valorAtual = proximo;                   
+                }*/
